@@ -30,12 +30,13 @@ Just put it in the Terminal
 Create a file named `android.yml` with this content:
 
 ```
+version: "3.8"
 services:
   android:
-    image: budtmo/docker-android:emulator_11.0_v2.19.0-p0
+    image: budtmo/docker-android:emulator_7.1.1_v2.12.0
     privileged: true
     environment:
-      - DEVICE=Nexus_3
+      - DEVICE=Nexus_5
       - WEB_VNC=true
       - AUTO_START=true
       - APPIUM=false
