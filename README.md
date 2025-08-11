@@ -35,20 +35,18 @@ services:
     image: budtmo/docker-android:emulator_11.0_v2.19.0-p0
     privileged: true
     environment:
-      - DEVICE=Nexus 3
+      - DEVICE=Nexus_3
       - WEB_VNC=true
       - AUTO_START=true
       - APPIUM=false
       - EMULATOR_ARGS=-gpu swiftshader_indirect
       - TZ=Asia/Dhaka
+      - LOG_WEB_SHARED=false
     ports:
       - "6080:6080"    # noVNC web UI
       - "5555:5555"    # ADB over TCP/IP (optional)
     shm_size: 4g
-    deploy:
-      resources:
-        limits:
-          cpus: "2.0"
+    restart: unless-stopped
 ```
 
 ---
