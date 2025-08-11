@@ -30,7 +30,7 @@ Just put it in the Terminal
 Create a file named `android.yml` with this content:
 
 ```
-sservices:
+services:
   android:
     image: budtmo/docker-android:emulator_11.0_v2.19.0-p0
     privileged: true
@@ -54,30 +54,7 @@ volumes:
   android_data:
 
 ```
----
-# `android.yml` but rooted
-```
-services:
-  android:
-    image: budtmo/docker-android-x86-11.0-rooted
-    privileged: true
-    environment:
-      - DEVICE=Nexus 3
-      - WEB_VNC=true
-      - AUTO_START=true
-      - APPIUM=false
-      - EMULATOR_ARGS=-gpu swiftshader_indirect
-      - TZ=Asia/Dhaka
-    ports:
-      - "6080:6080"    # noVNC
-      - "5555:5555"    # ADB
-    shm_size: 4g
-    deploy:
-      resources:
-        limits:
-          cpus: "4"
-    restart: unless-stopped
-```
+
 ---
 # Start the CODE (YAY)
 
