@@ -30,7 +30,7 @@ Just put it in the Terminal
 Create a file named `android.yml` with this content:
 
 ```
-services:
+sservices:
   android:
     image: budtmo/docker-android:emulator_11.0_v2.19.0-p0
     privileged: true
@@ -43,10 +43,16 @@ services:
       - TZ=Asia/Dhaka
       - LOG_WEB_SHARED=false
     ports:
-      - "6080:6080"    # noVNC web UI
-      - "5555:5555"    # ADB over TCP/IP (optional)
+      - "6080:6080"
+      - "5555:5555"
     shm_size: 4g
+    volumes:
+      - android_data:/data
     restart: unless-stopped
+
+volumes:
+  android_data:
+
 ```
 
 ---
