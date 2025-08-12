@@ -27,32 +27,29 @@ Just put it in the Terminal
 
 ### Create `android.yml` and run it
 
-Create a file named `android.yml` with this content:
+Create a file named `android.yml` with this content (made faster in update):
 
 ```
-version: "3.8"
+version: '3.8'
+
 services:
   android:
-    image: budtmo/docker-android:emulator_7.1.1_v2.12.0
+    image: budtmo/docker-android:emulator_11.0
     privileged: true
+    devices:
+      - /dev/kvm:/dev/kvm
     environment:
-      - DEVICE=Nexus_5
-      - WEB_VNC=true
-      - AUTO_START=true
-      - APPIUM=false
-      - EMULATOR_ARGS=-gpu swiftshader_indirect
+      - DEVICE=Nexus_5x           # Has Google Play support
+      - WEB_VNC=true              # Enable web VNC access
+      - AUTO_START=true           # Start emulator automatically
+      - EMULATOR_ARGS=-gpu host -no-window -skin 1080x1920  # Use host GPU acceleration
       - TZ=Asia/Dhaka
-      - LOG_WEB_SHARED=false
+       DEVICE_STORAGE=10000
     ports:
-      - "6080:6080"
-      - "5555:5555"
-    shm_size: 4g
-    volumes:
-      - android_data:/data
-    restart: unless-stopped
-
-volumes:
-  android_data:
+      - "6080:6080"               # VNC web client
+      - "5555:5555"               # ADB TCP port
+    shm_size: 20g                 # Shared memory for better performance
+    restart: unless-stop
 
 ```
 
@@ -65,13 +62,23 @@ volumes:
 docker compose -f android.yml up
 ```
 ---
-#   (OPTIONAL) 
+#   (OPTIONALS STUFF) 
 ### (Optional) Connect via ADB
+Make a new terminal and do this
 ```
-sudo apt update
-sudo apt install android-tools-adb
-adb connect localhost:5555
+docker exec -it codespaces-blank-android-1 bash
+cat /proc/cpuinfo | grep vmx
 ```
+### ( def not Optional) How to Download apps (since  no GOOGLE PLAY STORE DEFINETIELY NOT GETTING FIXED)
+
+```
+ wget --referer="https://apkfiledownloadweb.com" --user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/115.0.0.0 Safari/537.36" "https://apkfiledownload.com/full-link" -O APKNAME.apk
+```
+like this
+```
+  wget --referer="https://www.apkmirror.com/" --user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/115.0.0.0 Safari/537.36" "https://www.apkmirror.com/wp-content/themes/APKMirror/download.php?id=8805694&key=283d012af4e3ac709b5affed1fdcc142a1d82915&forcebaseapk=true" -O googledrive.apk
+```
+# MORE COMING SOON 
 ---
 THANKS FOR DOING THIS CREDIT ME
 
