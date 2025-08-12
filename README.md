@@ -69,7 +69,7 @@ Make a new terminal and do this
 docker exec -it codespaces-blank-android-1 bash
 cat /proc/cpuinfo | grep vmx
 ```
-### ( def not Optional) How to Download apps (since  no GOOGLE PLAY STORE DEFINETIELY NOT GETTING FIXED)
+### ( def not Optional) How to Download apps dont do this on the adb please make a antoher new terminal plase(since  no GOOGLE PLAY STORE DEFINETIELY NOT GETTING FIXED)
 
 ```
  wget --referer="https://apkfiledownloadweb.com" --user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/115.0.0.0 Safari/537.36" "https://apkfiledownload.com/full-link" -O APKNAME.apk
@@ -78,6 +78,15 @@ like this
 ```
   wget --referer="https://www.apkmirror.com/" --user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/115.0.0.0 Safari/537.36" "https://www.apkmirror.com/wp-content/themes/APKMirror/download.php?id=8805694&key=283d012af4e3ac709b5affed1fdcc142a1d82915&forcebaseapk=true" -O googledrive.apk
 ```
+then copy to a anthor place to install
+```
+docker cp APKNAME.apk codespaces-blank-android-1:/tmp/APKNAME.apk
+```
+now go to adb terminal and paste this
+```
+adb install /tmp/APKNAME.apk
+```
+your all set! now
 # MORE COMING SOON 
 ---
 THANKS FOR DOING THIS CREDIT ME
