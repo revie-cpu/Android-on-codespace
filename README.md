@@ -39,17 +39,18 @@ services:
     devices:
       - /dev/kvm:/dev/kvm
     environment:
-      - DEVICE=Nexus_5x           # Has Google Play support
-      - WEB_VNC=true              # Enable web VNC access
-      - AUTO_START=true           # Start emulator automatically
-      - EMULATOR_ARGS=-gpu host -no-window -skin 1080x1920  # Use host GPU acceleration
+      - DEVICE=Nexus_5x
+      - WEB_VNC=true
+      - AUTO_START=true
+      - EMULATOR_ARGS=-gpu host -no-window -skin 1080x1920
+      - SNAPSHOT=true
       - TZ=Asia/Dhaka
-       DEVICE_STORAGE=10000
     ports:
-      - "6080:6080"               # VNC web client
-      - "5555:5555"               # ADB TCP port
-    shm_size: 20g                 # Shared memory for better performance
-    restart: unless-stop
+      - "6080:6080"
+      - "5555:5555"
+    shm_size: 20g
+    restart: unless-stopped
+
 
 ```
 
@@ -87,6 +88,14 @@ now go to adb terminal and paste this
 adb install /tmp/APKNAME.apk
 ```
 your all set! now
+### save a snapshot (to load where you left off)
+```
+adb emu avd snapshot save default
+```
+and load it 
+```
+adb emu avd snapshot load default
+```
 # MORE COMING SOON 
 ---
 THANKS FOR DOING THIS CREDIT ME
