@@ -83,7 +83,7 @@ then copy to a anthor place to install
 ```
 docker cp APKNAME.apk codespaces-blank-android-1:/tmp/APKNAME.apk
 ```
-now go to adb terminal and paste this
+now go to adb terminal and paste this (to install)
 ```
 adb install /tmp/APKNAME.apk
 ```
@@ -95,6 +95,24 @@ adb emu avd snapshot save default
 and load it 
 ```
 adb emu avd snapshot load default
+```
+
+### Find packages (apps) to uninstall and list
+```
+adb shell pm list packages
+```
+then it will show you the list of apps or packages whatever you call it
+IF you want to find the specific app using a key word
+```
+adb shell pm list packages | grep KEYWORD
+```
+like 
+```
+adb shell pm list packages | grep google
+```
+to unintall
+```
+adb shell pm list packages | grep google
 ```
 # MORE COMING SOON 
 ---
