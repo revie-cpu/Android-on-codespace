@@ -112,7 +112,7 @@ adb shell pm list packages | grep google
 ```
 to unintall
 ```
-adb shell pm list packages | grep google
+adb shell pm uninstall --user 0 package.name.here
 ```
 # MORE COMING SOON 
 ---
